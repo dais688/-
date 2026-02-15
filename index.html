@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>马年拜年卡片 · 生成你的专属祝福</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <h1>🐴 马年拜年卡片</h1>
+      <p class="subtitle">上传照片，填写姓名，生成专属马年拜年卡片</p>
+    </header>
+
+    <main class="main">
+      <!-- 步骤1: 填写信息 -->
+      <section class="section section-form">
+        <h2>第一步：填写信息</h2>
+        <div class="form">
+          <label class="label">
+            <span>你的姓名</span>
+            <input type="text" id="userName" class="input" placeholder="请输入你的姓名" maxlength="20" />
+          </label>
+          <label class="label">
+            <span>祝福语</span>
+            <select id="blessing" class="input select">
+              <option value="马年大吉">马年大吉</option>
+              <option value="马到成功">马到成功</option>
+              <option value="一马当先">一马当先</option>
+              <option value="万马奔腾">万马奔腾</option>
+              <option value="龙马精神">龙马精神</option>
+              <option value="福气满盈">福气满盈</option>
+              <option value="马年快乐">马年快乐</option>
+              <option value="马年吉祥">马年吉祥</option>
+            </select>
+            <span class="hint">将显示为：<strong id="previewText">xxx</strong>祝你新年<span id="previewBlessing">马年大吉</span></span>
+          </label>
+        </div>
+      </section>
+
+      <!-- 步骤2: 上传照片 -->
+      <section class="section section-upload">
+        <h2>第二步：上传照片</h2>
+        <div class="upload-zone" id="uploadZone">
+          <input type="file" id="photoInput" accept="image/*" hidden />
+          <div class="upload-placeholder" id="uploadPlaceholder">
+            <span class="upload-icon">📷</span>
+            <span>点击或拖拽上传照片</span>
+            <span class="upload-tip">将自动截取头像、美颜并添加可爱马年头套</span>
+          </div>
+          <div class="crop-area hidden" id="cropArea">
+            <div class="crop-wrapper" id="cropWrapper">
+              <img id="cropImage" alt="预览" />
+              <div class="crop-circle" id="cropCircle"></div>
+            </div>
+            <div class="crop-controls">
+              <label class="slider-label">缩放 <span id="scaleValue">100</span>%</label>
+              <input type="range" id="scaleSlider" class="slider" min="80" max="200" value="100" />
+              <p class="crop-hint">拖动图片使脸部位于圆圈内，调整缩放后点击「确认裁剪」</p>
+              <button type="button" class="btn btn-primary" id="confirmCrop">确认裁剪</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 步骤3: 生成卡片 -->
+      <section class="section section-result">
+        <h2>第三步：你的拜年卡片</h2>
+        <div class="card-wrapper" id="cardWrapper">
+          <div class="card-template" id="card">
+            <div class="card-bg">
+              <span class="card-deco card-lantern" aria-hidden="true"></span>
+              <span class="card-deco card-confetti" aria-hidden="true"></span>
+              <span class="card-deco card-firework card-firework-1" aria-hidden="true"></span>
+              <span class="card-deco card-firework card-firework-2" aria-hidden="true"></span>
+              <span class="card-deco card-candy" aria-hidden="true"></span>
+              <span class="card-deco card-apple" aria-hidden="true"></span>
+            </div>
+            <div class="card-content">
+              <p class="card-blessing" id="cardBlessingText">xxx祝你新年马年大吉</p>
+              <div class="card-portrait-wrap">
+                <div class="card-portrait" id="cardPortrait">
+                  <canvas id="portraitCanvas"></canvas>
+                  <div class="headwear headwear-horse" id="headwear" aria-hidden="true"></div>
+                </div>
+              </div>
+              <p class="card-blessing-big" id="cardBlessingBig">福气满盈</p>
+              <p class="card-footer">新春快乐 · 马年吉祥</p>
+            </div>
+          </div>
+        </div>
+        <div class="result-actions">
+          <button type="button" class="btn btn-primary" id="generateCard" disabled>生成卡片</button>
+          <button type="button" class="btn btn-secondary" id="downloadCard" disabled>下载图片</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>上传的照片仅在本页面处理，不会上传到服务器</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
